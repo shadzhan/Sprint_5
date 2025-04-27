@@ -1,1 +1,2 @@
-main_site == 'https://qa-mesto.praktikum-services.ru/'
+
+main_site == 'https://stellarburgers.nomoreparties.site/'
