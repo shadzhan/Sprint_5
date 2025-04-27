@@ -1,12 +1,13 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from curl import *
-import pytest
+from selenium.webdriver.chrome.service import Service
 
+from curl import *
 from data import Credentials
 from locators import Locators
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def driver():
     options = Options()
     options.add_argument("--window-size=1200,600")
@@ -15,7 +16,9 @@ def driver():
     yield driver
     driver.quit()
 
+
 @pytest.fixture
+
 def login(driver):
 
     driver.find_element(*Locators.REG_EMAIL).send_keys(Credentials.email)
