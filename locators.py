@@ -13,6 +13,7 @@ class Locators:
     LOGIN_EMAIL = (By.XPATH, '//div[label[text()="Email"]]//input')
     LOGIN_PASSWORD = (By.XPATH, '//div[label[text()="Пароль"]]//input')
     LOGIN_BUTTON = (By.XPATH, '//button[text()= "Войти"]')
+    LOGIN_FORGOT_PASSWORD = (By.XPATH, '//button[text()="Восстановить"]')
 
     # Локаторы для авторизации
     SIGN_IN_BUTTON = (By.XPATH, '//button[text()="Войти в аккаунт"]')
