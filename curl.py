@@ -1,2 +1,2 @@
 
-main_site == 'https://stellarburgers.nomoreparties.site/'
+main_site = 'https://stellarburgers.nomoreparties.site/'

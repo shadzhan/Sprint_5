@@ -1,7 +1,6 @@
 
 
 class Credentials:
-    email='quantum@perfect.ru'
-    password='78965Betta'
-
-timeout = 20
+    name='Берт'
+    email='sever@ya.ru'
+    password='123456789'

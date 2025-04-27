@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class Locators:
     # Локаторы для регистрации
-    NEW_ACCOUNT = (By.XPATH, '//a[contains(text(), "Зарегистрироваться")]')
+    REG_SECTION = (By.XPATH, '//h2[text()="Регистрация"]')
     REG_NAME = (By.CSS_SELECTOR, 'input[name="name"]')
     REG_EMAIL = (By.XPATH, '//div[label[text()="Email"]]//input')
     REG_PASSWORD = (By.XPATH, '//div[label[text()="Пароль"]]//input')
