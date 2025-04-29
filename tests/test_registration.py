@@ -18,13 +18,10 @@ class TestRegistrationWithNewCredentials:
         driver.find_element(*Locators.REG_EMAIL).send_keys("arcticshine@ya.ru")
         driver.find_element(*Locators.REG_PASSWORD).send_keys("123456789")
         driver.find_element(*Locators.REG_BUTTON).click()
-        WebDriverWait(driver, 10).until(
-            EC.url_to_be("https://stellarburgers.nomoreparties.site/login")
-        )
-        current_url = driver.current_url
-        assert driver.current_url == main_site + 'login'
+        text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
+                                               (Locators.PLACE_ORDER_BUTTON)).text
+        assert text == "Оформить заказ"
         driver.quit()
-
 
 
 def test_invalid_password_registration(driver):
@@ -32,7 +29,7 @@ def test_invalid_password_registration(driver):
     driver.find_element(*Locators.SIGN_IN_BUTTON).click()
     driver.find_element(*Locators.NEW_ACCOUNT_LINK).click()
     driver.find_element(*Locators.REG_NAME).send_keys("Берт")
-    driver.find_element(*Locators.REG_EMAIL).send_keys("server@ya.ru")
+    driver.find_element(*Locators.REG_EMAIL).send_keys("sever@ya.ru")
     driver.find_element(*Locators.REG_PASSWORD).send_keys("123")
     driver.find_element(*Locators.REG_BUTTON).click()
     WebDriverWait(driver, 10).until(
