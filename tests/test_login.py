@@ -4,9 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from curl import *
-from helper import generate_registration_data
 from locators import Locators
-from data import Credentials
+
 
 
 
@@ -20,7 +19,7 @@ def test_login_via_sign_in_button(driver):
     text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
                                           (Locators.PLACE_ORDER_BUTTON)).text
     assert text == "Оформить заказ"
-    driver.quit()
+
 
 
 def test_login_via_personal_account_button(driver):
@@ -33,7 +32,7 @@ def test_login_via_personal_account_button(driver):
     text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
                                            (Locators.PLACE_ORDER_BUTTON)).text
     assert text == "Оформить заказ"
-    driver.quit()
+
 
 
 
@@ -48,10 +47,10 @@ def test_login_via_registration_form(driver):
     text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
                                            (Locators.PLACE_ORDER_BUTTON)).text
     assert text == "Оформить заказ"
-    driver.quit()
 
 
-# Тест входа через кнопку "Восстановить пароль" (часто это переходит на страницу восстановления)
+
+
 def test_login_via_forgot_password(driver):
     driver.find_element(*Locators.SIGN_IN_BUTTON).click()
     driver.find_element(*Locators.LOGIN_FORGOT_PASSWORD).click()
@@ -63,7 +62,7 @@ def test_login_via_forgot_password(driver):
     text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
                                            (Locators.PLACE_ORDER_BUTTON)).text
     assert text == "Оформить заказ"
-    driver.quit()
+
 
 
 

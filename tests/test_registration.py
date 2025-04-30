@@ -21,7 +21,7 @@ class TestRegistrationWithNewCredentials:
         text = WebDriverWait(driver, 10).until(EC.presence_of_element_located
                                                (Locators.PLACE_ORDER_BUTTON)).text
         assert text == "Оформить заказ"
-        driver.quit()
+
 
 
 def test_invalid_password_registration(driver):
@@ -40,7 +40,7 @@ def test_invalid_password_registration(driver):
     )
 
     assert "Некорректный пароль" in error_message.text
-    driver.quit()
+
 
 
 def test_empty_name_registration(driver):
@@ -52,7 +52,7 @@ def test_empty_name_registration(driver):
 
     reg_button = driver.find_element(*Locators.REG_BUTTON)
     assert not reg_button.is_enabled(), "Кнопка регистрации должна быть неактивной"
-    driver.quit()
+
 
 def test_registration_with_existing_account(driver):
     driver.find_element(*Locators.SIGN_IN_BUTTON).click()
@@ -66,4 +66,3 @@ def test_registration_with_existing_account(driver):
         EC.presence_of_element_located((By.XPATH, '//p[contains(text(), "Такой пользователь уже существует")]')))
 
     assert "Такой пользователь уже существует" in error_message_of_existing_account.text
-    driver.quit()

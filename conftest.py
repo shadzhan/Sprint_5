@@ -1,11 +1,12 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-
-from curl import *
-from data import Credentials
+from data import main_site
 from locators import Locators
+from data import Credentials
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 @pytest.fixture(scope="function")
 def driver():
@@ -16,13 +17,26 @@ def driver():
     yield driver
     driver.quit()
 
-
 @pytest.fixture
-
 def login(driver):
+    driver.get("https://stellarburgers.nomoreparties.site/login")
 
-    driver.find_element(*Locators.REG_EMAIL).send_keys(Credentials.email)
-    driver.find_element(*Locators.REG_PASSWORD).send_keys(Credentials.password)
-    driver.find_element(*Locators.REG_BUTTON).click()
+    email_field = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(Locators.REG_EMAIL)
+    )
+    email_field.send_keys(Credentials.email)
+
+    password_field = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(Locators.REG_PASSWORD)
+    )
+    password_field.send_keys(Credentials.password)
+
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable(Locators.REG_BUTTON)
+    ).click()
+
+    WebDriverWait(driver, 10).until(
+        EC.url_to_be("https://stellarburgers.nomoreparties.site/")
+    )
 
     return driver
