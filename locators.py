@@ -9,7 +9,7 @@ class Locators:
     REG_BUTTON = (By.XPATH, '//button[text()="Зарегистрироваться"]')
     NEW_ACCOUNT_LINK = (By.XPATH, '//a[text()="Зарегистрироваться"]')
     ERROR_MESSAGE = (By.XPATH, "//p[text()='Некорректный пароль']")
-    ERROR_MESSAGE_OF_EXISTING_ACCOUNT= (By.XPATH, '//p[contains(text(), "Такой пользователь уже существует")]')
+    ERROR_MESSAGE_OF_EXISTING_ACCOUNT = (By.XPATH, '//p[contains(text(), "Такой пользователь уже существует")]')
 
     # Локаторы для входа
     LOGIN_EMAIL = (By.XPATH, '//div[label[text()="Email"]]//input')

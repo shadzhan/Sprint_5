@@ -24,17 +24,21 @@ class TestRegistrationWithNewCredentials:
 
 
 
-def test_invalid_password_registration(driver):
+def test_invalid_password_registration(driver,):
+
+    name, email, password = generate_registration_data()
 
     driver.find_element(*Locators.SIGN_IN_BUTTON).click()
     driver.find_element(*Locators.NEW_ACCOUNT_LINK).click()
-    driver.find_element(*Locators.REG_NAME).send_keys("Берт")
-    driver.find_element(*Locators.REG_EMAIL).send_keys("sever@ya.ru")
-    driver.find_element(*Locators.REG_PASSWORD).send_keys("123")
+    driver.find_element(*Locators.REG_NAME).send_keys(name)
+    driver.find_element(*Locators.REG_EMAIL).send_keys(email)
+    driver.find_element(*Locators.REG_PASSWORD).send_keys(password)
     driver.find_element(*Locators.REG_BUTTON).click()
+
     WebDriverWait(driver, 10).until(
-        EC.url_to_be ("https://stellarburgers.nomoreparties.site/login")
+        EC.url_to_be("https://stellarburgers.nomoreparties.site/login")
     )
+
     error_message = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(Locators.ERROR_MESSAGE)
     )
