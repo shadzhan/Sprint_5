@@ -18,8 +18,8 @@ def driver():
     driver.quit()
 
 @pytest.fixture
-def login(driver):
-    driver.get("https://stellarburgers.nomoreparties.site/login")
+def login(driver, main_site):
+    driver.get(main_site)
 
     email_field = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(Locators.REG_EMAIL)
@@ -36,7 +36,7 @@ def login(driver):
     ).click()
 
     WebDriverWait(driver, 10).until(
-        EC.url_to_be("https://stellarburgers.nomoreparties.site/")
+        EC.url_to_be(main_site)
     )
 
     return driver
