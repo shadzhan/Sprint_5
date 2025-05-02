@@ -33,10 +33,10 @@ def test_invalid_password_registration(driver):
     driver.find_element(*Locators.REG_PASSWORD).send_keys("123")
     driver.find_element(*Locators.REG_BUTTON).click()
     WebDriverWait(driver, 10).until(
-        EC.url_to_be("https://stellarburgers.nomoreparties.site/login")
+        EC.url_to_be ("https://stellarburgers.nomoreparties.site/login")
     )
     error_message = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//p[contains(text(), 'Некорректный пароль')]"))
+        EC.presence_of_element_located(Locators.ERROR_MESSAGE)
     )
 
     assert "Некорректный пароль" in error_message.text
@@ -63,6 +63,6 @@ def test_registration_with_existing_account(driver):
     driver.find_element(*Locators.REG_BUTTON).click()
 
     error_message_of_existing_account = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//p[contains(text(), "Такой пользователь уже существует")]')))
+        EC.presence_of_element_located(Locators.ERROR_MESSAGE_OF_EXISTING_ACCOUNT))
 
     assert "Такой пользователь уже существует" in error_message_of_existing_account.text
